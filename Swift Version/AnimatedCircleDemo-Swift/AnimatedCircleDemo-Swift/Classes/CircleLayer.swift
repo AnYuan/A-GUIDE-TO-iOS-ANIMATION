@@ -144,10 +144,7 @@ class CircleLayer: CALayer {
         
         let dash2 = [CGFloat(2.0), CGFloat(2.0)]
         ctx.setLineDash(phase:2.0, lengths: dash2)
-//        CGContextSetLineDash(ctx, 0.0, dash2, 2);
         ctx.strokePath()
-//        CGContextStrokePath(ctx)
-
     }
     
     private func drawPoint(points: [NSValue], ctx: CGContext) {
