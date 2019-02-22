@@ -17,15 +17,16 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        circleView = CircleView(frame: CGRectMake(view.frame.size.width/2 - 320/2, view.frame.size.height/2 - 320/2, 320, 320))
+        
+        let x = CGFloat((view.frame.size.width - 320)/2.0)
+        let y = CGFloat((view.frame.size.height - 320)/2.0)
+        circleView = CircleView(frame: CGRect(x: x,
+                                              y: y,
+                                              width: CGFloat(320.0),
+                                              height: CGFloat(320.0)))
         view.addSubview(circleView)
         
         circleView.circleLayer.progress = CGFloat(slider.value)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
     }
 
     @IBAction func didValueChanged(sender: AnyObject) {
