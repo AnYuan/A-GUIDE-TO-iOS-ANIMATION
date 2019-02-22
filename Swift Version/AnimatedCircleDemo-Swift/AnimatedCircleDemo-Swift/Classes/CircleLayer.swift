@@ -70,28 +70,36 @@ class CircleLayer: CALayer {
         
         let pointA = CGPoint(x: rectCenter.x, y:outsideRect.origin.y + movedDistance)
         
-        var pointB: CGPoint
+        let pointB, pointD, c2, c3, c6, c7: CGPoint
+        
         switch movePoint! {
         case .d:
             pointB = CGPoint(x: rectCenter.x + outsideRect.size.width/2, y: rectCenter.y)
-        default:
+            pointD = CGPoint(x: outsideRect.origin.x - movedDistance * 2,
+                             y: rectCenter.y)
+            
+            c2 = CGPoint(x: pointB.x, y: pointB.y - offset)
+            c3 = CGPoint(x: pointB.x, y: pointB.y + offset)
+            c6 = CGPoint(x: pointD.x, y: pointD.y + offset - movedDistance)
+            c7 = CGPoint(x: pointD.x, y: pointD.y - offset + movedDistance)
+
+
+        case .b:
             pointB = CGPoint(x: rectCenter.x + outsideRect.size.width/2 + movedDistance * 2, y: rectCenter.y)
+            pointD = CGPoint(x: outsideRect.origin.x,
+                             y: rectCenter.y)
+            c2 = CGPoint(x: pointB.x, y: pointB.y - offset + movedDistance)
+            c3 = CGPoint(x: pointB.x, y: pointB.y + offset - movedDistance)
+            c6 = CGPoint(x: pointD.x, y: pointD.y + offset)
+            c7 = CGPoint(x: pointD.x, y: pointD.y - offset)
+
         }
         
         let pointC = CGPoint(x: rectCenter.x, y: rectCenter.y + outsideRect.size.height/2 - movedDistance)
-        let pointD = CGPoint(x: movePoint == .d ? outsideRect.origin.x - movedDistance*2 : outsideRect.origin.x,
-                             y: rectCenter.y)
         
         let c1 = CGPoint(x: pointA.x + offset, y: pointA.y)
-        let c2 = CGPoint(x: pointB.x, y: self.movePoint == .d ? pointB.y - offset : pointB.y - offset + movedDistance)
-        
-        let c3 = CGPoint(x: pointB.x, y: self.movePoint == .d ? pointB.y + offset : pointB.y + offset - movedDistance)
         let c4 = CGPoint(x: pointC.x + offset, y: pointC.y)
-        
         let c5 = CGPoint(x: pointC.x - offset, y: pointC.y)
-        let c6 = CGPoint(x: pointD.x, y: self.movePoint == .d ? pointD.y + offset - movedDistance : pointD.y + offset)
-        
-        let c7 = CGPoint(x: pointD.x, y: self.movePoint == .d ? pointD.y - offset + movedDistance : pointD.y - offset)
         let c8 = CGPoint(x: pointA.x - offset, y: pointA.y)
         
         //外接虚线矩形
